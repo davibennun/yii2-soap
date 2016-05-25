@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="tradein:webservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="tradein:webservice">
+<types>
+<xsd:schema targetNamespace="tradein:webservice"
+>
+ <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+ <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+ <xsd:complexType name="Tradein">
+  <xsd:sequence>
+   <xsd:element name="id" type="xsd:integer"/>
+   <xsd:element name="first_name" type="xsd:string"/>
+   <xsd:element name="model" type="xsd:string"/>
+  </xsd:sequence>
+ </xsd:complexType>
+ <xsd:complexType name="TradeinCollection">
+  <xsd:complexContent>
+   <xsd:restriction base="SOAP-ENC:Array">
+    <xsd:attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:Tradein[]"/>
+   </xsd:restriction>
+  </xsd:complexContent>
+ </xsd:complexType>
+</xsd:schema>
+</types>
+<message name="tradein.getTradeinCollectionRequest">
+  <part name="fromId" type="xsd:string" /></message>
+<message name="tradein.getTradeinCollectionResponse">
+  <part name="return" type="tns:TradeinCollection" /></message>
+<portType name="tradeinServicePortType">
+  <operation name="tradein.getTradeinCollection">
+    <documentation>get Tradein Collectoin from 'from' to 'to'</documentation>
+    <input message="tns:tradein.getTradeinCollectionRequest"/>
+    <output message="tns:tradein.getTradeinCollectionResponse"/>
+  </operation>
+</portType>
+<binding name="tradeinServiceBinding" type="tns:tradeinServicePortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="tradein.getTradeinCollection">
+    <soap:operation soapAction="tradein:webservice:getTradeinCollection" style="rpc"/>
+    <input><soap:body use="encoded" namespace="tradein:webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="tradein:webservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+</binding>
+<service name="tradeinService">
+  <port name="tradeinServicePort" binding="tns:tradeinServiceBinding">
+    <soap:address location="http://localhost:8000/tradein_server.php"/>
+  </port>
+</service>
+</definitions>

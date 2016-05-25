@@ -1,0 +1,18 @@
+actor: Tester
+paths:
+    tests: codeception
+    log: codeception/_output
+    data: codeception/_data
+    support: codeception/_support
+    envs: codeception/_envs
+settings:
+    bootstrap: _bootstrap.php
+    suite_class: \PHPUnit_Framework_TestSuite
+    memory_limit: 1024M
+    log: true
+    colors: true
+config:
+    test_entry_url: 'http://localhost/index.php'
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed

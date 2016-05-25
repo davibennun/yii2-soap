@@ -1,0 +1,22 @@
+{
+    "name": "davibennun/yii-soap",
+    "description": "Yii2 soap package",
+    "authors": [
+        {
+            "name": "Davi Nunes",
+            "email": "davi@andradenunes.org"
+        }
+    ],
+    "require": {
+        "phpro/soap-client":"^0.1.3"
+    },
+    "require-dev": {
+        "codeception/codeception": "2.1.8",
+        "yiisoft/yii2-codeception": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Davibennun\\Soap\\": "src/"
+        }
+    }
+}
