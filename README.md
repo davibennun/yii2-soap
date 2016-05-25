@@ -5,7 +5,7 @@ An elengant aproach to consuming SOAP API within Yii2.
 [ - Incomplete documentation - ]
 
 ### Usage
-First install this package via composer. Then config an extension like this
+First install this package via composer. Then config an component like this
 ```
 'soap' => [
           'class' => Davibennun\Soap\SoapComponent::class,
